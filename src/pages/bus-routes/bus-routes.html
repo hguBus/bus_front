@@ -1,0 +1,141 @@
+<ion-content>
+  <div class='header'>
+    <ng-container class='set' *ngFor="let active of active_bus">
+      <ng-container *ngIf="active.TurnFlag == dest">
+        <ion-row style="margin-top: -1.8%" class="all-center" *ngIf="active.Over == 0">
+          <ion-col>
+            <img class="big" src="assets/img/stop.png" />
+          </ion-col>
+          <ion-col width-50>
+            <ion-row class="over"> &nbsp;&nbsp;&nbsp; STOP </ion-row>
+            <div class="busText" *ngIf="dest == 0">{{list_bus[active.ShelterNo -1].sname}}</div>
+            <div class="busText" *ngIf="dest == 1">{{list_bus[active.ShelterNo].sname}}</div>
+          </ion-col>
+          <ion-col width-33 class="vertical-center">
+            <div class="etc">
+              <ion-row class="vertical-center">
+                <ion-col width-50>
+                  <img class= "small" src="assets/img/bus.png" />
+                  <div style ="display: inline;"> {{active.CarNo}} </div>
+                </ion-col>
+                <ion-col width-50 class="vertical-center">
+                  <img class="small" src="assets/img/man.png" />
+                  <div style ="display: inline;"> &nbsp;{{active.Passenger}} </div>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+    </ng-container>
+
+    <ng-container class='set' *ngFor="let active of active_bus">
+      <ng-container *ngIf="active.TurnFlag == dest">
+        <ion-row style="margin-top: -1.8%" class="all-center" *ngIf="active.Over == 1 && active.ShelterNo != 27">
+          <ion-col>
+            <img class="big" src="assets/img/arrive_soon.png" />
+          </ion-col>
+          <ion-col width-50>
+            <ion-row class="over"> &nbsp;&nbsp;&nbsp; ARRIVE SOON </ion-row>
+            <div class="busText" *ngIf="dest == 0">{{list_bus[active.ShelterNo].sname}} (으)로 이동 중</div>
+            <div class="busText" *ngIf="dest == 1">{{list_bus[active.ShelterNo + 1].sname}} (으)로 이동 중</div>
+          </ion-col>
+          <ion-col width-33 class="vertical-center">
+            <div class="etc">
+              <ion-row class="vertical-center">
+                <ion-col width-50>
+                  <img class= "small" src="assets/img/bus.png" />
+                  <div style ="display: inline;"> {{active.CarNo}} </div>
+                </ion-col>
+                <ion-col width-50 class="vertical-center">
+                  <img class="small" src="assets/img/man.png" />
+                  <div style ="display: inline;"> &nbsp; {{active.Passenger}} </div>
+                </ion-col>
+              </ion-row>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ng-container>
+    </ng-container>
+
+      <ng-container *ngIf="(dest == 0 && exist_0 == 0) || (dest == 1 && exist_1 == 0)">
+        <ion-row style="margin-top: -2%">
+          <img style="width: 100%; height: 0%; padding-left: 15px; padding-right: 15px;" src="assets/img/no_bus.png" />
+        </ion-row>
+      </ng-container>
+  </div>
+
+  <!--지도-->
+  <div (click)="swipe()" #map id="map"></div>
+
+  <!--스와이프-->
+  <div class='side_bar' [ngSwitch]="swipe_mode" [ngStyle]="{'width': div_width}" (swipe)="swipeEvent($event)">
+    <ul style="text-align: center !important;" *ngSwitchCase="0">
+      <ng-container *ngFor="let list of list_bus">
+        <li (click)="goFocus(list)" *ngIf="list.turnFlag == dest">
+          <ion-row style="height: 100%;" class="all-center">
+            <img style = "margin-left: -30%;" [src] = "list.img">
+          </ion-row>
+          <ng-container *ngFor="let active of active_bus">
+            <ng-container *ngIf="active.TurnFlag == dest">
+              <ng-container *ngIf="list.index == active.ShelterNo">
+                  <img class="stop_bus_1" *ngIf="active.Over == 0 && active.NOExist != '1'" src="assets/img/active_bus.png" />
+                  <img class="active_bus_1" *ngIf="active.Over == 1 && active.OExist != '1'" src="assets/img/active_bus.png" />
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </li>
+      </ng-container>
+    </ul>
+
+    <ul *ngSwitchCase="1">
+      <ng-container *ngFor="let list of list_bus">
+        <li (click)="goFocus(list)" *ngIf="list.turnFlag == dest">
+          <ion-row style="height: 100%;" class="vertical-center">
+            <img [src] = "list.img">
+            <div style ="color: #3F5663;"> {{list.sname}} </div>
+          </ion-row>
+          <ng-container *ngFor="let active of active_bus">
+            <ng-container *ngIf="active.TurnFlag == dest">
+              <ng-container *ngIf="list.index == active.ShelterNo">
+                <img class="stop_bus_2" *ngIf="active.Over == 0 && active.NOExist != '1'" src="assets/img/active_bus.png" />
+                <img class="active_bus_2" *ngIf="active.Over == 1 && active.OExist != '1'" src="assets/img/active_bus.png" />
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </li>
+      </ng-container>
+    </ul>
+
+    <ul *ngSwitchCase="2">
+      <ng-container *ngFor="let list of list_bus">
+        <li (click)="goFocus(list)" *ngIf="list.turnFlag == dest">
+          <ion-row style="height: 100%;" class="vertical-center">
+            <img [src] = "list.img">
+            <div style ="color: #3F5663;"> {{list.lname}} </div>
+          </ion-row>
+          <ng-container *ngFor="let active of active_bus">
+            <ng-container *ngIf="active.TurnFlag == dest">
+              <ng-container *ngIf="list.index == active.ShelterNo">
+                <img class="stop_bus_3" *ngIf="active.Over == 0 && active.NOExist !='1'" src="assets/img/active_bus.png" />
+                <img class="active_bus_3" *ngIf="active.Over == 1 && active.OExist!='1'" src="assets/img/active_bus.png" />
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+
+  <div class="busStop" *ngIf="clickedView">
+    <div class="close" (click)="closeBusStop()">
+      <img src="assets/img/close.png" />
+    </div>
+    <img [src]="busStopImg"> 
+  </div>
+
+  <div class="currentPos" [ngStyle] = "{'bottom': bt_bottom}">
+    <img (click)="currentPosition()" src="assets/img/position.png" />
+  </div>
+
+</ion-content>

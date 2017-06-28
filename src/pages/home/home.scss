@@ -1,0 +1,108 @@
+page-home 
+{   
+    .town, .school, .time_table, .explain 
+    {
+        background: #E2EEEE;
+        margin-bottom: 5px;
+
+        ion-row
+        {
+            height: 100%;
+        }
+        .show
+        {
+            display: table-cell;
+
+            .cell
+            {
+                width: 100%;
+                height: 100%;
+            }
+
+            .active_1, .active_2, .active_3, .active_4, .active_5, .active_6
+            {
+                    position: relative;
+                    .text
+                    {
+                        width: 100%;
+                        height: 95.2%;
+                        position: absolute;
+                        top: 0%;
+                        text-align: center;
+                        font-family: "kopubB";
+                        font-size: 100%;
+                    }
+                    .pas
+                    {
+                        width: 100%;
+                        height: 136%;
+                        position: absolute;
+                        top: 0%;
+                        text-align: center;
+                        font-family: "kopubB";
+                        font-size: 80%;
+                    }
+            }
+            .active_1 
+            {
+                width: 85%;         
+            }
+            .active_2
+            {
+                width: 85%;               
+            }
+            .active_3
+            {
+                width: 100%;   
+            }
+            .active_4
+            {
+                width: 100%;
+            }
+            .active_5
+            {
+                width: 100%;
+            }
+            .active_6
+            {
+                width: 100%;
+            }
+        }
+
+    }
+    .town, .school, .time_table
+    {
+        height: 30%;
+    }
+
+    .explain
+    {
+        height: 7%;
+        .explain
+        {
+            transform: translate(0%,-250%);
+            display: inline;
+        }
+    }
+
+    .time_table, td
+    {
+        #inner1,#inner2,#inner3,#inner4,#inner5,#inner6
+        {
+            border-bottom: 1px solid #64A095;
+        }
+        //border-bottom: 1px solid #64A095;
+        text-align: center;
+        // border:1px solid #4570A0;
+        font-family: "kopubM";
+    }
+
+    #th
+    {
+        border-bottom: 2px solid #64A095;
+        border-collapse: separate;
+        color: #64A095;
+
+        font-family: "kopubM";
+    }
+}

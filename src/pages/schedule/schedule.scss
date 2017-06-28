@@ -1,0 +1,45 @@
+page-schedule 
+{
+    .scroll-content 
+    {
+    overflow: auto;
+    }
+    .tabs {
+        button {
+            background: #f18f4d;
+            color: white;
+            width: 75%;
+            padding: 9px 0;
+            border: 1px solid #f18f4d;
+            border-bottom: none;
+            border-radius: 10px 10px 0 0;
+        }
+        .btn-non-active {
+            background: white;
+            color: #f18f4d;
+        }
+    }
+    .time-table {
+        min-height: 20%;
+        border: 2px solid #f18f4d;
+        border-radius: 10px 10px;
+        padding:3px;
+    }
+    tr:nth-child(even) {
+        background-color: #ffffff;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #e3eef7;
+    }
+
+    tr:nth-child(1) {
+        background-color: #FFCC99;
+        border-bottom: 2px solid black;
+        font-weight: bold;
+    }
+    #select {
+        border-radius:10px 10px;
+    }
+    //이거 안먹힘
+}

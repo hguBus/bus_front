@@ -1,0 +1,16 @@
+<ion-content padding>
+  <ion-row class="tabs" text-center>
+    <ion-col no-padding width-33>
+      <button [ngClass]="{'btn-non-active': selectedBtn != 1}" (click)="selectedBtn = 1; weekday()">평일</button>
+    </ion-col>
+    <ion-col no-padding width-33>
+      <button [ngClass]="{'btn-non-active': selectedBtn != 2}" (click)="selectedBtn = 2; weekend()">주말</button>
+    </ion-col>
+    <ion-col no-padding width-33>
+      <button [ngClass]="{'btn-non-active': selectedBtn != 3}" (click)="selectedBtn = 3; heunghae()">흥해</button>
+    </ion-col>
+  </ion-row>
+  <div class="time-table">
+    <div id="select"></div>
+  </div>
+</ion-content>

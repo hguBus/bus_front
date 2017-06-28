@@ -1,0 +1,100 @@
+<ion-header >
+  <div class="tab_title">
+    <ion-row>
+      <ion-col no-padding text-left width-33>
+        <img (click)="showSetting(); clickedShowTaxi = false;" class="set" src="assets/img/setting.png" />
+      </ion-col>
+      <ion-col no-padding text-center width-33>
+        <img class="title" src="assets/img/Title.png" />
+      </ion-col>
+      <ion-col no-padding text-right width-33>
+        <img (click)="showCallTaxi(); clickedShowSetting = false" class="taxi" src="assets/img/taxi.png" />
+        <img (click)="refresh(); clickedShowTaxi = false; clickedShowSetting = false" class="refresh" src="assets/img/refresh.png" />
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="tabs" (click)="clickedShowTaxi = false;clickedShowSetting = false">
+    <ion-row text-center class="vertical-center">
+      <ion-col width-25 (click)="nav.setRoot(Home); selectedTab = 1">
+        <img *ngIf="selectedTab == 1" src="assets/img/tab1.png">
+        <span *ngIf="selectedTab != 1">현재운행중</span>
+      </ion-col>
+      <ion-col width-25 (click)="nav.setRoot(Bus, {dest: 0}); selectedTab = 2">
+        <img *ngIf="selectedTab == 2" src="assets/img/tab2.png">
+        <span *ngIf="selectedTab != 2">시내행</span>
+      </ion-col>
+      <ion-col width-25 (click)="nav.setRoot(Bus, {dest: 1}); selectedTab = 3">
+        <img *ngIf="selectedTab == 3" src="assets/img/tab3.png">
+        <span *ngIf="selectedTab != 3">학교행</span>
+      </ion-col>
+      <ion-col width-25 (click)="nav.setRoot(Schedule); selectedTab = 4">
+        <img *ngIf="selectedTab == 4" src="assets/img/tab4.png" />
+        <span *ngIf="selectedTab != 4">버스시간표</span>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-header>
+
+<ion-content (click)="clickedShowTaxi = false;">
+  <ion-nav [root]="rootPage" [ngStyle]="setNav()"></ion-nav>
+
+  <div class="showSetting" *ngIf="clickedShowSetting">
+    <ion-row class="setting all-center">  메인 페이지 설정 </ion-row> 
+    <ion-row class="settingSub all-center"> 선택한 페이지를 버스앱의 메인페이지로 설정합니다. </ion-row> 
+    <ion-row> 
+      <ion-col width-50 class="left vertical-center" (click)="changeCheck(1);">
+        <img class="box" src={{home_check}} /> 
+        현재운행중
+      </ion-col>
+      <ion-col width-50 class="right vertical-center" (click)="changeCheck(2);"> 
+        <img class="box" src={{town_check}} /> 
+        시내행 
+      </ion-col>
+    </ion-row>
+    <ion-row> 
+      <ion-col width-50 class="left vertical-center" (click)="changeCheck(3);"> 
+        <img class="box" src={{school_check}} /> 
+        학교행 
+      </ion-col>
+      <ion-col width-50 class="right vertical-center" (click)="changeCheck(4);"> 
+        <img class="box" src={{schedule_check}} /> 
+        버스시간표 
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <div class="confirm">
+        <ion-col (click)="clickedOk(); clickedShowSetting = false;">확인</ion-col>
+      </div>
+      <div class="confirm2">
+        <ion-col (click)="clickedCancel(); clickedShowSetting = false;">취소</ion-col>
+      </div>
+    </ion-row>
+  </div>
+
+  <!--<div class="showLang" *ngIf="clickedShowLang">
+    <ion-row class="lang all-center"> 언어 설정 </ion-row>
+    <ion-row class = "all-center"> 
+      <img class = "ready" src="assets/img/Korean2English.png" />
+    </ion-row>
+    <ion-row>
+      <div class="confirm">
+        <ion-col (click)="clickedShowLang = false;">확인</ion-col>
+      </div>
+      <div class="confirm2">
+        <ion-col (click)="clickedShowLang = false">취소</ion-col>
+      </div>
+    </ion-row>
+  </div>-->
+
+  <div class="showtaxi" *ngIf="clickedShowTaxi">
+    <div class="calltaxi">
+      <ion-row class="all-center" (click)="telTaxi('0542312330')"> 영광콜 054-231-2330 </ion-row>
+      <ion-row class="all-center" (click)="telTaxi('0542826161')"> 육일콜 054-282-6161 </ion-row>
+      <ion-row class="all-center" (click)="telTaxi('0542521111')"> 포스콜 054-252-1111 </ion-row>
+      <ion-row class="all-center" (click)="telTaxi('0542761442')"> 장기콜 054-276-1442 </ion-row>
+      <ion-row class="all-center"> 선택시 전화가 연결됩니다. </ion-row>
+    </div>
+  </div>
+  
+</ion-content>

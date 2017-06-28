@@ -1,0 +1,94 @@
+<ion-content>
+  <div class = "town">
+    <ion-row class ="all-center">
+      <ion-col class = "vertical-center max-height" width-20>
+        <img class="home_town" src="assets/img/home_town.png" />
+      </ion-col>
+      <ion-col width-80>
+        <ng-container *ngIf="ready == 1">
+          <div class="show" *ngFor = "let active of active_bus">
+            <div *ngIf = "active.TurnFlag == 0">
+              <div [className]="Tactive" *ngIf = "active.Over == 1">
+                <img class="arrive_soon" src="assets/img/arrive_soon.png"/>
+                <div class="text all-center"> {{list_bus[active.ShelterNo].sname}}</div>
+                <div class="pas all-center">{{active.Passenger}}명</div>
+              </div>
+              <div [className]="Tactive" *ngIf = "active.Over == 0">
+                <img class="stop" src="assets/img/stop.png"/>
+                <div class="text all-center"> {{list_bus[active.ShelterNo - 1].sname}}</div>
+                <div class="pas all-center">{{active.Passenger}}명</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      <ng-container *ngIf="exist_0 == 0">
+        <ion-row class = "all-center">
+          <img style="width: 80%; height: 0%;" src="assets/img/noBus.png" />
+        </ion-row>
+      </ng-container> 
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <div class = 'school'>
+    <ion-row class ="all-center">
+      <ion-col class = "vertical-center max-height" width-20>
+        <img class="home_school" src="assets/img/home_school.png" />
+      </ion-col>
+      <ion-col width-80>
+        <ng-container *ngIf="ready == 1">
+          <div class="show" *ngFor = "let active of active_bus">
+            <div *ngIf = "active.TurnFlag == 1">
+              <div [className]="Sactive" *ngIf = "active.Over == 1">
+                <img class="arrive_soon" src="assets/img/arrive_soon.png"/>
+                <div class="text all-center"> {{list_bus[active.ShelterNo + 1].sname}}</div>
+                <div class="pas all-center">{{active.Passenger}}명</div>
+              </div>
+              <div [className]="Sactive" *ngIf = "active.Over == 0">
+                <img class="stop" src="assets/img/stop.png"/>
+                <div class="text all-center"> {{list_bus[active.ShelterNo].sname}}</div>
+                <div class="pas all-center">{{active.Passenger}}명</div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="exist_1 == 0">
+          <ion-row class = "all-center">
+            <img style="width: 80%; height: 0%;" src="assets/img/noBus.png" />
+          </ion-row>
+        </ng-container>
+      </ion-col>
+    </ion-row>
+
+  </div>
+
+  <div class = 'time_table'>
+    <ion-row class ="all-center">
+      <ion-col class = "vertical-center max-height" width-20>
+        <img class="home_table" src="assets/img/home_table.png" />
+      </ion-col>
+      <ion-col width-80>
+            <table>
+              <tr id="th"></tr>
+              <tr id="inner1"></tr>
+              <tr id="inner2"></tr>
+              <tr id="inner3"></tr>
+              <tr id="inner4"></tr>
+              <tr id="inner5"></tr>
+              <tr id="inner6"></tr>
+            </table>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class = 'explain'>
+    <ion-row class ="all-center">
+      <ion-col width-33></ion-col>
+      <ion-col class="vertical-center max-height">
+          <img style="width : 100%;" src="assets/img/info.png" />
+      </ion-col>
+    </ion-row>
+  </div>
+  
+</ion-content>
